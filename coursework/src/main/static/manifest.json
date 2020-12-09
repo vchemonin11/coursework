@@ -1,0 +1,26 @@
+{
+    "name": "determinant game",
+	"short_name": "determinant",
+    "icons": [
+      {
+        "src": "./images/matrix_digits.png",
+        "sizes": "512x512",
+        "type": "image/png",
+        "purpose": "any maskable"
+      },
+      {
+        "src": "./images/matrix_square.png",
+        "sizes": "192x192",
+        "type": " image/png"
+      },
+      {
+        "src": "./images/matrix_digits.png",
+        "sizes": "512x512",
+        "type": "image/png"
+      }
+    ],
+    "theme_color": "#ffffff",
+    "background_color": "#ffffff",
+    "start_url": "./",
+    "display": "standalone"
+}

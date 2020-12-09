@@ -1,0 +1,384 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --main-color: #F0F8FF;
+    --comp-color: red;
+    --player-color: royalblue;
+    --field-size: 3;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+.content {
+    flex: 1 0 auto;
+}
+
+.content-lobby {
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+}
+
+.content-and-menu {
+    display: flex;
+    justify-content: space-between;
+}
+
+footer {
+    flex: 0 0 auto;
+}
+
+.clickable {
+    cursor: pointer;
+}
+
+aside {
+    height: 100%;
+    max-width: 25%;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    margin: 50px;
+    font-size: 3rem;
+    border-left: 1px gray;
+}
+
+aside button {
+    font: bold 20px Tahoma, sans;
+    background-color: var(--main-color);
+    outline: none;
+    border: none;
+    margin: 5px;
+    cursor: pointer;
+    height: 150px;
+    width: 100%;
+}
+
+@keyframes bump {
+    0% {
+        transform: scale(1.5, 1.5);
+        width: 100px;
+        opacity: 1;
+        border: solid 2px var(--border-color);
+        box-shadow: inset 0 0 0 5px var(--border-color, gray);
+        margin: 5px;
+    }
+    25% {
+        transform: scale(1, 1);
+        width: 100px;
+        opacity: 0.5;
+        border: solid 2px var(--border-color);
+        box-shadow: inset 0 0 0 1px var(--border-color);
+        margin: 5px;
+    }
+    50% {
+        transform: scale(0.5, 0.5);
+        width: 100px;
+        border: solid 2px var(--border-color);
+        box-shadow: none;
+        opacity: 0;
+        margin: 5px;
+    }
+    100% {
+        width: 0;
+        opacity: 0;
+        border: 0;
+        margin: 0;
+        /*opacity: 0;*/
+    }
+}
+
+.field {
+    display: flex;
+}
+
+.box {
+    max-width: calc(var(--field-size) * 100px + 100px);
+    max-height: 450px;
+    width: 100%;
+    min-width: calc(var(--field-size) * 100px + 50px);
+}
+
+.qrcode.big {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: calc(var(--field-size) * 100px + 50px);
+}
+
+.digits {
+    align-self: center;
+    display: flex;
+    flex-wrap: wrap;
+    min-width: 350px;
+}
+
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 5px 0;
+    padding: 0;
+}
+
+@media (max-width: 700px) and (min-width: 450px) {
+    .field {
+        flex-wrap: wrap;
+    }
+
+    hr {
+        width: 100%;
+    }
+
+    .hidden2 {
+        display: none;
+    }
+}
+
+.install {
+    background-color: var(--main-color);
+    text-align: center;
+    font: bold 24px/100px Tahoma, sans;
+    height: 100px;
+    width: 100%;
+    cursor: pointer;
+    border: 0;
+    padding: 0;
+}
+
+.hidden {
+    display: none;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    height: 100px;
+}
+
+.cell, .digit {
+    display: inline-block;
+    width: 100px;
+    max-width: 100px;
+    max-height: 100px;
+    border: solid 2px gray;
+    margin: 5px;
+    text-align: center;
+    font: bold 24px/100px Tahoma, sans;
+    border-radius: 10px;
+    background-color: var(--main-color);
+    touch-action: none;
+    user-select: none;
+}
+
+.digit {
+    cursor: grab;
+}
+
+.player {
+    --border-color: var(--player-color);
+}
+
+.comp {
+    --border-color: var(--comp-color);
+}
+
+.best {
+    color: green;
+    border: solid 2px green;
+}
+
+.cell.disabled {
+    cursor: not-allowed;
+    border: solid 2px var(--border-color, gray);
+}
+
+.digit.disabled {
+    overflow: hidden;
+    width: 0;
+    opacity: 0;
+    border: 0;
+    margin: 0;
+}
+
+.digit.disabled-animate {
+    overflow: hidden;
+    animation-name: bump;
+    animation-duration: 1.2s;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+}
+
+@media (max-width: 450px) {
+    .field {
+        flex-wrap: wrap;
+    }
+
+    hr {
+        width: 100%;
+    }
+
+    .digits {
+        /*background: #e6f2ff;*/
+        width: 55vh;
+        min-width: 45vh;
+    }
+
+    .box {
+        width: 55vh;
+        min-width: 45vh;
+    }
+
+    .cell {
+        width: 15vh;
+        margin: 0.5vh;
+        max-width: 100px;
+        height: 15vh;
+    }
+
+    .digit {
+        width: 15vh;
+        max-width: 100px;
+        height: 15vh;
+        margin: 0.5vh;
+    }
+
+    .hidden2 {
+        display: none;
+    }
+}
+
+.hole {
+    color: transparent;
+    cursor: default;
+}
+
+.cell.last {
+    box-shadow: inset 0 0 0 5px var(--border-color);
+}
+
+.active.player {
+    background-color: var(--player-color);
+}
+
+.active.comp {
+    background-color: var(--comp-color);
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.7);
+    transition: opacity 700ms;
+    visibility: hidden;
+    opacity: 0;
+}
+
+.overlay.show {
+    visibility: visible;
+    opacity: 1;
+}
+
+.popup {
+    margin: 70px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 5px;
+    width: 80%;
+    font-size: 2rem;
+    position: relative;
+    transition: all 5s ease-in-out;
+}
+
+.popup h2 {
+    margin-top: 0;
+    color: #333;
+    font-family: Tahoma, Arial, sans-serif;
+}
+
+.popup .close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    transition: all 400ms;
+    font-size: 30px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #333;
+}
+
+.popup .close:hover {
+    color: var(--player-color);
+}
+
+.popup .content {
+    max-height: 30%;
+    overflow: auto;
+}
+
+.lobby, .lobby-all {
+    max-width: 30vw;
+    display: flex;
+    flex-direction: column;
+}
+
+.game-line {
+    margin: 5px;
+    font-size: 24px;
+    padding: 20px;
+    background-color: var(--main-color);
+}
+
+.join {
+    display: flex;
+    flex-direction: column;
+    font-size: 2rem;
+}
+
+.player-header {
+    margin: 20px;
+    font-size: 4rem;
+    width: 100%;
+    text-align: center;
+}
+
+.player1 {
+    background-color: var(--player-color);
+}
+
+
+.player2 {
+    background-color: var(--comp-color);
+}
+
+.field-wrapper {
+    display: flex;
+    justify-content: space-between;
+    /*align-items: center;*/
+}
+
+.arrow {
+    font-size: 6rem;
+    background-color: var(--main-color);
+    user-select: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}

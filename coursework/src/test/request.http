@@ -1,0 +1,8 @@
+POST http://localhost:8080/game/new1?userId=1
+###
+
+POST http://localhost:8080/game/23474972-1a2c-48d6-8651-e1b8f161dab3/move?userId=1&digit=3&place=5
+
+###
+
+GET http://localhost:8080/game/list?userId=1
