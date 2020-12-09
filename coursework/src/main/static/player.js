@@ -455,6 +455,7 @@ async function mainLoop(window, document, settings) {
 async function main(window, document, settings) {
     const fork = document.querySelector(".fork-link");
     fork.onclick = (e) => {
+        e.preventDefault();
         fetch(settings.server + "/game/fork/" + settings.currentGame + "?rewind=" + settings.rewind + "&userId="+settings.currentUser).then(() => document.location.href.reload());
     }
     await mainLoop(window, document, settings);
